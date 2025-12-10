@@ -1,0 +1,108 @@
+running = True
+responses = 0
+
+while running:
+    #name
+    good_bad = "unknown"
+    #rating
+    rate = "unknown"
+    rated = False
+    rate_attempt = 0
+    rating = ""
+    rating_num = ""
+    #restart
+    again = ""
+    #feedback
+    feedback = ""
+    feedback_list = []
+    #special coniditions
+    conditions = 0
+    go_on = "blank"
+
+#separation (if second or more time)
+    if responses > 0:
+        print("\n" * 27)
+
+#determine name:
+    print("What is your first name?")
+    firstname = input("> ")
+    print("What is your last name?")
+    lastname = input("> ")
+    firstname_cap = firstname.capitalize()
+    lastname_cap = lastname.capitalize()
+
+#determine status:
+    print(f"Hello {firstname_cap} {lastname_cap}")
+    print("\nHow are you doing? (good/bad)")
+    while good_bad == "unknown":
+        pstatus = input("> ")
+        pstatus = pstatus.lower()
+        if pstatus == "good":
+            print("\nNice to hear that!\nHave a great day!")
+            good_bad = "known"
+        elif pstatus == "bad":
+            print("\nSorry to hear that...\nHope your day gets better!")
+            good_bad = "known"
+        else:
+            print("\nPlease answer with good/bad.") #prevents error
+
+#rate? (yes/no)
+    print("\nWould you like to rate my services? (yes/no)")
+    rate = input("> ")
+    rate = rate.lower()
+    if rate == "yes":
+        while not rated:
+            while rating_num == "":
+                if rate_attempt == 0:
+                    print("\nType in your rating here (1-10)")
+                rating = input("> ")
+                try: rating_num = int(rating) #prevents error
+                except ValueError:
+                    rate_attempt += 1
+                    print ("\nPlease enter an integer rating from 1-10:")
+            rating_num = int(rating)
+            if (0 <= int(rating_num) <= 5):
+                rated = True
+                print("\nWe are always looking to improve.\nType feedback here:")
+                feedback = input("> ")
+                print(f"\nFeedback sent.\nThank you, {firstname_cap}, for your response.")
+            elif (10 >= int(rating_num) > 5):
+                rated = True
+                print(f"\nThank you for using our services, {firstname_cap}!")
+            else:
+                print("\nPlease enter an integer rating from 1-10")
+                rate_attempt += 1
+                rating_num = ""
+    elif rate == "no":
+        print(f"\nThank you for your time, {firstname_cap}\nGoodbye.")
+    responses += 1
+
+#conditions: (count)
+    if rate_attempt >= 1:
+        conditions += 1
+    if feedback != "":
+        conditions += 1
+
+#conditions: (print)
+    print(f"\n\n\n\n\nYou met {conditions} conditions:\n")
+    if rate_attempt >= 1:
+        print("\"get better at following instructions.\"")
+    if feedback != "":
+        print("\"good advice...\"")
+
+#wait to continue
+    while go_on == "blank":
+        print("(press enter to continue)")
+        go_on = input("")
+        if go_on == "":
+            break
+
+#again?
+    while again == "":
+        if again == "":
+            print("\n\n\nWould you like use our services again? (yes/no)")
+        again = input("> ")
+        if again.lower() == "no":
+            running = False
+        if again.lower() != ("yes" or "no"):
+            print("\nPlease answer with yes/no")
