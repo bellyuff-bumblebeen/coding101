@@ -1,29 +1,31 @@
+# TO-DO: create a "key" system for the conditions. at the "wait to continue" secition, allow the player to enter numbers to see the definition of the corrosponding condition above.
 running = True
 responses = 0
 
 while running:
-    #name
+    # name
     good_bad = "unknown"
-    #rating
+    # rating
     rate = "unknown"
     rated = False
     rate_attempt = 0
     rating = ""
     rating_num = ""
-    #restart
+    # restart
     again = ""
-    #feedback
+    # feedback
     feedback = ""
     feedback_list = []
-    #special coniditions
+    # special coniditions
     conditions = 0
+    total_conditions = 0
     go_on = "blank"
 
-#separation (if second or more time)
+# separation (if second or more time)
     if responses > 0:
         print("\n" * 27)
 
-#determine name:
+# determine name:
     print("What is your first name?")
     firstname = input("> ")
     print("What is your last name?")
@@ -31,7 +33,7 @@ while running:
     firstname_cap = firstname.capitalize()
     lastname_cap = lastname.capitalize()
 
-#determine status:
+# determine status:
     print(f"Hello {firstname_cap} {lastname_cap}")
     print("\nHow are you doing? (good/bad)")
     while good_bad == "unknown":
@@ -44,9 +46,9 @@ while running:
             print("\nSorry to hear that...\nHope your day gets better!")
             good_bad = "known"
         else:
-            print("\nPlease answer with good/bad.") #prevents error
+            print("\nPlease answer with good/bad.")  # prevents error
 
-#rate? (yes/no)
+# rate? (yes/no)
     print("\nWould you like to rate my services? (yes/no)")
     rate = input("> ")
     rate = rate.lower()
@@ -56,17 +58,19 @@ while running:
                 if rate_attempt == 0:
                     print("\nType in your rating here (1-10)")
                 rating = input("> ")
-                try: rating_num = int(rating) #prevents error
+                try:
+                    rating_num = int(rating)  # prevents error
                 except ValueError:
                     rate_attempt += 1
-                    print ("\nPlease enter an integer rating from 1-10:")
+                    print("\nPlease enter an integer rating from 1-10:")
             rating_num = int(rating)
-            if (0 <= int(rating_num) <= 5):
+            if (0 <= rating_num <= 5):
                 rated = True
                 print("\nWe are always looking to improve.\nType feedback here:")
                 feedback = input("> ")
-                print(f"\nFeedback sent.\nThank you, {firstname_cap}, for your response.")
-            elif (10 >= int(rating_num) > 5):
+                print(
+                    f"\nFeedback sent.\nThank you, {firstname_cap}, for your response.")
+            elif (10 >= rating_num > 5):
                 rated = True
                 print(f"\nThank you for using our services, {firstname_cap}!")
             else:
@@ -74,35 +78,40 @@ while running:
                 rate_attempt += 1
                 rating_num = ""
     elif rate == "no":
-        print(f"\nThank you for your time, {firstname_cap}\nGoodbye.")
+        rating_num = 10  # to prevent an error in the feedback condition
+        print(f"\nThank you for your time, {firstname_cap}.\nGoodbye.")
     responses += 1
 
-#conditions: (count)
-    if rate_attempt >= 1:
+# conditions: (count)
+    if rate_attempt > 3:
         conditions += 1
-    if feedback != "":
+    elif rate_attempt >= 1:
+        conditions += 1
+    if (0 <= rating_num <= 5) and feedback == "":
         conditions += 1
 
-#conditions: (print)
+# conditions: (print)
     print(f"\n\n\n\n\nYou met {conditions} conditions:\n")
-    if rate_attempt >= 1:
-        print("\"get better at following instructions.\"")
-    if feedback != "":
-        print("\"good advice...\"")
+    if rate_attempt > 3:
+        print("\"rating should not have been that difficult...\"")
+    elif rate_attempt >= 1:
+        print("\"get better at following instructions\"")
+    if (0 <= rating_num <= 5) and feedback == "":
+        print("\"thanks for that advice...\"")
 
-#wait to continue
+# wait to continue
     while go_on == "blank":
         print("(press enter to continue)")
         go_on = input("")
         if go_on == "":
             break
 
-#again?
+# again?
     while again == "":
         if again == "":
             print("\n\n\nWould you like use our services again? (yes/no)")
         again = input("> ")
         if again.lower() == "no":
             running = False
-        if again.lower() != ("yes" or "no"):
+        elif again.lower() != "yes":
             print("\nPlease answer with yes/no")
