@@ -76,7 +76,6 @@ while running:
     rate = "unknown"
     rated = False
     rate_attempt = 0
-    rating = 0
     rating_num = 0
 # rate?
     print("\nWould you like to rate my services? (yes/no)")
@@ -121,7 +120,6 @@ while running:
                     print(
                         f"\nFeedback sent.\nThank you, {firstname_cap}, for your response.")
                     break
-                    responses += 1
                 elif (9 >= rating_num > 5):
                     rated = True
                     print(
@@ -154,8 +152,6 @@ while running:
     conditions = 0
     condition_messages = []
     condition_defs = []
-    go_on = "blank"  # this is "blank" because enter lets the player continue
-    chose_number = False
 # conditions: (count)
     if rate_attempt > 3:
         conditions += 1
@@ -184,6 +180,10 @@ while running:
     for item in range(conditions):
         print(f"{item + 1}) {condition_messages[item]}")
 
+
+    go_on = "blank"  # this is "blank" because enter lets the player continue
+
+    chose_number = False
 # wait to continue, number for definition
     if conditions > 0:
         print("\nEnter a number to see corrosponding condition definition")

@@ -2,9 +2,9 @@
 
 # (required before running):
 pstatus = "bad"
-new_pstatus = ""
+new_pstatus = "" # defined in parameters
 
-def determine_status2(pstatus, new_pstatus):
+def determine_status2(pstatus, new_pstatus=""):
     if pstatus == "bad":
         print("Would you like to hear an inspiring quote? (yes/no)")
         while new_pstatus == "":
@@ -18,5 +18,6 @@ def determine_status2(pstatus, new_pstatus):
             else:
                 print("\nPlease answer with yes/no")
                 new_pstatus = ""
-            
-determine_status2(pstatus, new_pstatus)
+
+# test:            
+determine_status2(pstatus)

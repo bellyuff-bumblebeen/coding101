@@ -13,4 +13,5 @@ def determine_name():
     # adds to running name list
     name_list.append(f"{firstname_cap} {lastname_cap}")
 
+# test:
 determine_name()

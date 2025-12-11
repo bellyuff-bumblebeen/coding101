@@ -1,11 +1,11 @@
 # status determining (1):
     
 # (required before running):
-good_bad = "unknown"
-firstname_cap = "MANUAL"
-lastname_cap = "NAME"
+good_bad = "unknown" #defined in parameters
+firstname_cap = "MANUAL NAME"
+lastname_cap = "MANUAL NAME"
 
-def determine_status1(firstname_cap, lastname_cap):
+def determine_status1(firstname_cap, lastname_cap, good_bad="unknown"):
     print(f"Hello {firstname_cap} {lastname_cap}")
     print("\nHow are you doing? (good/bad)")
     while good_bad == "unknown":
@@ -24,4 +24,5 @@ def determine_status1(firstname_cap, lastname_cap):
         else:
             print("\nPlease answer with good/bad.")  # prevents error
 
+# test:
 determine_status1(firstname_cap, lastname_cap)
