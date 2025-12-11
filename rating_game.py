@@ -219,7 +219,7 @@ while running:
             break
         elif again == "no":
             running = False
-            print(f"\nThank you, have a good day, {firstname_cap}!")
+            print(f"\nThank you, and have a good day, {firstname_cap}!")
 
 # input "stats" to view gathered information
         elif again == "stats":
@@ -238,11 +238,11 @@ while running:
                         # given the name, finds the corrosponding feedback to print:
                         print(
                             f"{name}: {feedback_list[name_list.index(name)]}")
-                        print("\n\n\n\n\n\n")
                         stat_type = "stalled"  # to initate a stall
+                    print("\n\n\n\n\n\n")
 
                     # starts a "stall"
-                    while stat_type == "stalled":  # ADD AN EXIT OPTION TO GO STRAIGHT BACK TO NEW GAME?
+                    while stat_type == "stalled":           # MAKE THIS INTO A FUNCTION
                         print("<stall>")
                         stat_type = input("> ")
                         stat_type = stat_type.lower()
@@ -263,9 +263,10 @@ while running:
                     for name in name_list:
                         # given the name, finds the corrosponding conditions to print:
                         print(
+                            # ADD AN AVERAGE DISPLAY TOO
                             f"{name}: {condition_list[name_list.index(name)]}")
-                        print("\n\n\n\n\n\n")
                         stat_type = "stalled"  # to initiate a stall
+                    print("\n\n\n\n\n\n")
 
                     # starts a "stall"
                     while stat_type == "stalled":
