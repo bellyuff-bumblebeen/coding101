@@ -1,10 +1,12 @@
 # stall initiation:
 
 # (required before running)
-stat_type = "stalled"
+if __name__ == "__main__":
+    stat_type = "stalled"
+
 
 def stall_initiate(stat_type):
-    while stat_type == "stalled": 
+    while stat_type == "stalled":
         print("<stall>")
         stat_type = input("> ")
         stat_type = stat_type.lower()
@@ -19,5 +21,7 @@ def stall_initiate(stat_type):
         else:
             stat_type = "stalled"
 
+
 # test:
-stall_initiate(stat_type)
+if __name__ == "__main__":
+    stall_initiate(stat_type)

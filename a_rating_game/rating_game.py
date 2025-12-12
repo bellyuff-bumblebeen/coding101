@@ -104,10 +104,10 @@ while running:
                 rating_num = int(rating)
 
             # interprets input:
-                # feedback resets:
-                feedback = ""
                 # feedback:
                 if (0 < rating_num <= 5):
+                    # feedback resets after the if, so if the player doesn't rate 1-5, feedback is empty:
+                    feedback = ""
                     rated = True
                     print("\nWe are always looking to improve.\nType feedback here:")
                     feedback = input("> ")
@@ -179,7 +179,6 @@ while running:
     condition_list.append(f"{conditions}")
     for item in range(conditions):
         print(f"{item + 1}) {condition_messages[item]}")
-
 
     go_on = "blank"  # this is "blank" because enter lets the player continue
 
